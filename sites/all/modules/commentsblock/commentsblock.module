@@ -1,0 +1,168 @@
+<?php
+
+/**
+ * @file
+ * Puts the comment form into a block and provides a default view for the
+ * comments.
+ * We can now easily sort stuff and add fields.
+ *
+ * Difference from 1.0. We now cache the contents in a variable instead of rendering them.
+ * Concepttaken from: http://drupal.org/project/comment_block
+ */
+
+/*
+ * implementation of hook_menu()
+ */
+
+function commentsblock_menu() {
+  $items['admin/config/user-interface/commentsblock'] = array(
+    'title' => 'Comments Block',
+    'description' => 'How to display the comments block',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('commentsblock_settings_form'),
+    'access arguments' => array('administer comment blocks'),
+    'file' => 'commentsblock.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+
+/**
+ * Implementation of hook_views_api().
+ * The view is automatically inlcuded via commentsblock_views_default_views() if path is correct see doku:
+ * http://drupalcontrib.org/api/drupal/contributions--views--docs--views.api.php/function/hook_views_default_views/7
+ */
+function commentsblock_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'commentsblock') . '/views',
+  );
+}
+
+
+/**
+ * Implementation of hook_view_alter().
+ *
+ * This will make room for your custom comment view or block, by removing the regular
+ * comment listing from the node body.
+ *
+ * @todo the unset is not a good solution? maybe difficulties with other modules?
+ */
+
+function commentsblock_node_view_alter(&$build) {
+  comment_block_static_comments($build['#node']->nid, $build);
+  unset($build['comments']);
+
+  //shows "Add comment on the bottom of the node"
+  $hidelink = variable_get('commentsblock_display_link', 0);
+  if($hidelink == 1) {
+   unset($build['links']['comment']);
+  }
+}
+
+
+
+/**
+ * Implements hook_block_info().
+ */
+
+function commentsblock_block_info() {
+  $blocks = array();
+  $blocks['comment_form_block'] = array(
+    'info' => t('Comment form block'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * We use a custom view for the comment display and put the block in a form
+ * OR
+ * We put form+comments in the form
+ */
+
+function commentsblock_block_view($delta) {
+  $block = array();
+  $display_option = variable_get('commentsblock_display', '');
+
+  if ($delta == 'comment_form_block') {
+    // Get the active menu object.
+    if ($node = menu_get_object()) {
+      // Make sure user is viewing a node.
+      if ($node->comment == COMMENT_NODE_OPEN) {
+        // Render the comments and comment form (access checks, etc. are done
+        // by comment_node_page_additions()).
+        $block['content'] = drupal_render(comment_block_static_comments($node->nid, false, $node));
+      }
+    }
+  }
+
+/*  switch ($delta) {
+    case 'comment_form_block':
+
+      // Only nodes in page view.
+      if ((arg(0) == 'node') && is_numeric(arg(1)) && (arg(2) == NULL)) {
+
+        $node = menu_get_object('node');
+
+        // Display comments and form
+        if ($node->comment == COMMENT_NODE_OPEN) {
+          $block['subject'] = t('Post new comment');
+
+          // Only display the form if user is allowed to post
+          if ($display_option == 0 && user_access('post comments')) {
+            //load only the form
+            $block['content'] = drupal_get_form("comment_node_{$node->type}_form", (object) array('nid' => $node->nid));
+          }
+          else {
+            //load form along with all comments
+            $block['content'] = comment_node_page_additions($node);
+          }
+        }
+        // Display comments without form
+        else {
+          if ($node->comment == COMMENT_NODE_CLOSED) {
+            // load all comments (function checks if it should include form)
+            $block['content'] = comment_node_page_additions($node);
+          }
+        }
+
+      }
+      break;
+  }*/
+  return $block;
+}
+
+
+/***************************************** HELPER ******************************/
+
+/*
+ * This breaks just about every rule in the book, but our choices are to either rebuild the content or
+ * or to have the node put the content into this static variable, then retrieve it from the block view
+ * For sake of performance, we choose the static variable
+ */
+function comment_block_static_comments($nid, $build = false, $node = false) {
+  $comments = &drupal_static(__FUNCTION__);
+
+  if ($build) {
+    //would add $links above the comments title. Useful?
+    //$comments[$nid]['links'] = $build['links']['comment'];
+    $comments[$nid]['comments'] = $build['comments'];
+  } else {
+    #normal behavior will be that the node calls this function before
+    if (!isset($comments[$nid])) {
+      $comments[$nid]['links'] = '';
+      $comments[$nid]['comments'] = comment_node_page_additions($node);
+    }
+    return $comments[$nid];
+  }
+
+  //we remove the comments and only load the form if the user wants this
+  $comment_form_only = variable_get('commentsblock_display', 0);
+  if($comment_form_only == 1) {
+    unset($comments[$nid]['comments']['comments']);
+  }
+}

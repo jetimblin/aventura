@@ -1,0 +1,4 @@
+name = FM Aventura
+description = Aventura, a responsive theme from Friendly Machine.
+core = 7.x
+files[] = fm_aventura.profile

@@ -1,0 +1,1111 @@
+/* This file is organized in the following way:
+
+BASIC SETTINGS contains general style elements for headings, links, etc. Also a few random bits that didn't seem to go any place else.
+
+TEXT STYLES contains most of the typography. There are a few instances when it is handle elsewhere, 
+usually in the ZONES to avoid duplication for something very specific.
+
+ZONE STYLES are styles that occur in the various ZONES of Omega theme. Many of these have to do with layout or the styling of an element that was in a particluar zone by default.
+
+RESPONSIVE DESIGN is down by the bottom and that's where the media queries are. */
+/* BASIC STYLES */
+html, body {
+  background-color: #222222;
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+#page {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+a {
+  color: #e09430;
+  text-decoration: none;
+}
+a:visited {
+  color: #e09430;
+}
+a:hover {
+  color: #eab673 !important;
+}
+
+li a.active {
+  color: #e09430;
+}
+
+blockquote {
+  border-left: 5px solid #e09430;
+  margin-left: 27px;
+  padding-left: 18px;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid white;
+}
+
+body {
+  color: #222222;
+  font-family: Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  clear: both;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 {
+  color: #222222 !important;
+}
+
+h1 {
+  font-size: 2.22222em;
+}
+
+h2 {
+  font-size: 1.83333em;
+}
+
+h3 {
+  font-size: 1.33333em;
+}
+
+h4 {
+  font-size: 1.11111em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 1em;
+}
+
+h1.site-name, h1.site-name a, h2.site-name, h2.site-name a {
+  color: white !important;
+  font-size: 1.33333em;
+  margin-bottom: 0.4em;
+  margin-top: 0.4em;
+  text-transform: uppercase;
+}
+
+p, ol, ul, blockquote, pre, code, span {
+  font-size: 1.125rem;
+  line-height: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+p {
+  cleaar: both;
+}
+
+ul {
+  list-style: disc inside;
+}
+
+ol {
+  list-style: decimal inside;
+}
+
+body.not-front img {
+  border: 1px solid #dddddd;
+  height: auto;
+  max-width: 100%;
+}
+
+.image-left {
+  float: left;
+  height: auto;
+  margin: 5px 15px 5px 0;
+  max-width: 50%;
+}
+
+.image-right {
+  float: right;
+  height: auto;
+  margin: 5px 0 5px 15px;
+  max-width: 50%;
+}
+
+/* Responsive video - was using FitVids but current version breaks WYSIWYG 
+   https://drupal.org/node/1578130   
+   Second part of this fix is in aventura.js
+*/
+p.fitvids, div.fitvids {
+  height: 0;
+  position: relative;
+  padding-bottom: 54.9%;
+}
+
+.fitvids iframe,
+.fitvids object,
+.fitvids embed {
+  left: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.fitvids iframe,
+.fitvids object,
+.fitvids embed {
+  border: 1px solid #dddddd;
+}
+
+p.small-text, p.small-text span {
+  font-size: 13.5px;
+}
+
+div.caption p {
+  font-size: 13.5px;
+  margin: 0;
+  max-width: 100%;
+}
+
+div.caption.none p {
+  margin: 20px 0;
+  max-width: 100%;
+}
+
+div.field-name-body div.field-item p div.caption p {
+  font-style: italic;
+  margin: 0;
+  max-width: 100%;
+  text-align: right;
+}
+
+p.two-column-first, div.two-column-first, span.two-column-first {
+  display: block;
+  float: left;
+  margin-bottom: 1.5em;
+  margin-bottom: 1.5rem;
+  padding-right: 6%;
+  width: 47%;
+}
+
+p.two-column-last, div.two-column-last, span.two-column-last {
+  display: block;
+  float: right;
+  padding-bottom: 1.5em;
+  padding-bottom: 1.5rem;
+  width: 47%;
+}
+
+p.two-column-last + p, div.two-column-last + p, span.two-column-last + p {
+  clear: both;
+}
+
+body.node-type-article div.caption.none p {
+  margin: 0 0 1.5rem 0;
+}
+
+div.feed-icon a.feed-icon img {
+  border: none;
+}
+
+/* END BASIC STYLES */
+/* TEXT STYLES */
+/* END TEXT STYLES */
+/* TABLE STYLES */
+table {
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 1.5em;
+  max-width: 100%;
+  width: 100%;
+}
+
+table th,
+table td {
+  padding: 9px;
+  line-height: 1.125rem;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #eeeeee;
+}
+
+table th {
+  font-weight: bold;
+}
+
+table thead th {
+  vertical-align: bottom;
+}
+
+table tbody > tr:nth-child(odd) > td,
+table tbody > tr:nth-child(odd) > th {
+  background-color: #eeeeee;
+}
+
+table tbody tr:hover > td,
+table tbody tr:hover > th {
+  background-color: #eab673;
+}
+
+/* END TABLE STYLES */
+/* FORM STYLES */
+input[type='text'], textarea, select,
+input[type="date"], input[type="email"], input[type="password"], input[type="search"], input[type="tel"] {
+  border: 1px solid #dddddd;
+  box-shadow: 0 0 2px #eeeeee inset;
+  color: #222222;
+  font-size: 18px;
+  height: 36px;
+  padding: 0 9px;
+  width: 80%;
+}
+
+select {
+  padding-right: 0;
+  padding-top: 2.7px;
+}
+
+select option {
+  padding: 4.5px 0 4.5px 9px;
+}
+
+input[type='text']:focus, textarea:focus, select:focus,
+input[type="date"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus {
+  border: 1px solid #e09430;
+  box-shadow: 0 0 2px #e09430 inset;
+}
+
+textarea {
+  height: 180px;
+}
+
+div.form-actions {
+  text-align: right;
+}
+
+button, input[type="reset"], input[type="submit"], input[type="button"],
+.comment-links a {
+  background: #e09430;
+  border: none;
+  border-radius: 9px;
+  color: white;
+  font-size: 18px;
+  padding: 8px 16px;
+  padding: .5rem 1rem;
+  text-shadow: none;
+}
+
+select#superfish-1-select {
+  width: 360px;
+}
+
+button:hover, input[type="reset"]:hover, input[type="submit"]:hover, input[type="button"]:hover,
+.comment-links a:hover {
+  background: #e7ab5c;
+  color: white !important;
+  cursor: pointer;
+}
+
+fieldset {
+  border: 1px solid #dddddd;
+  padding: 15px;
+}
+
+legend span {
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+label {
+  margin-bottom: 9px;
+}
+
+.marker, .form-required {
+  color: #e09430;
+}
+
+/* search form(s) */
+#search-block-form .form-type-textfield,
+#search-block-form .form-actions,
+#search-form .form-type-textfield,
+#search-form .form-actions {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+}
+
+.container-inline label {
+  display: inline-block;
+}
+
+#search-block-form .container-inline,
+#search-form .container-inline,
+.search-form {
+  position: relative;
+}
+
+#search-block-form .form-actions,
+#search-form .form-submit {
+  position: absolute;
+  right: 0;
+  top: 6px;
+}
+
+#search-block-form h2,
+#search-form #edit-submit,
+#search-block-form .form-submit {
+  display: none;
+}
+
+#search-block-form .form-type-textfield,
+#search-form .form-type-textfield {
+  width: 100%;
+}
+
+#search-block-form .form-type-textfield input[type='text'],
+#search-form .form-type-textfield input[type='text'] {
+  background-image: url("../images/search.png");
+  background-repeat: no-repeat;
+  background-position: 98% 6px;
+}
+
+#search-block-form .form-type-textfield input[type='text'],
+#search-form .form-type-textfield input[type='text'] {
+  padding: 0 18px;
+  width: 90%;
+}
+
+/* END FORM STYLES */
+/* ZONE STYLES */
+/* top zone */
+/* branding zone */
+body.front #zone-branding-wrapper {
+  background-color: #222222;
+  border-bottom: 4px solid #e09430;
+}
+
+/* menu is actually in branding zone by default in Aventura */
+/* menu zone */
+.block-main-menu ul.menu,
+.block-superfish ul.menu {
+  line-height: 1.125rem;
+}
+
+.block-main-menu ul.menu li,
+.block-superfish ul.menu li {
+  margin: 0;
+}
+
+.block-main-menu li.expanded,
+.block-main-menu li.collapsed,
+.block-main-menu li.leaf,
+.block-superfish li.expanded,
+.block-superfish li.collapsed,
+.block-superfish li.leaf {
+  padding: 0;
+}
+
+.block-main-menu ul,
+.block-superfish ul {
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+.block-main-menu li,
+.block-superfish li {
+  display: inline-block;
+  float: left;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-main-menu li a,
+.block-superfish li a {
+  color: #fff !important;
+  display: inline-block;
+  padding: 16px;
+}
+.block-main-menu li a:hover,
+.block-superfish li a:hover {
+  background: #e09430;
+}
+.block-main-menu li a.active-trail,
+.block-superfish li a.active-trail {
+  background: #e09430;
+}
+
+.block-superfish li.menuparent a {
+  padding: 16px 36px 16px 20.25px;
+}
+
+a > .sf-sub-indicator {
+  right: 20px;
+  top: 1.2rem;
+}
+
+.block-superfish li.active-trail,
+.block-superfish li.active-trail a {
+  background: #e09430;
+}
+
+.front .block-superfish li.active-trail a {
+  background: #222222;
+}
+.front .block-superfish li.active-trail a:hover {
+  background: #e09430;
+}
+
+.block-superfish li .menu-views a {
+  line-height: 2.125rem;
+  padding: 8px 16px;
+}
+
+.block-superfish li.sfHover,
+.block-superfish li.sfHover a {
+  background-color: #e09430;
+}
+
+.block-superfish ul.sf-horizontal li ul {
+  margin-top: 8px;
+}
+
+.block-superfish li ul li {
+  padding: 0;
+}
+
+.block-superfish li ul li a {
+  width: 100% !important;
+}
+
+.block-superfish li ul li,
+.block-superfish li ul li a,
+.block-superfish li.active-trail ul li,
+.block-superfish li.active-trail ul li a,
+.block-superfish li.sfHover ul li,
+.block-superfish li.sfHover ul li a {
+  background-color: #222222;
+  text-align: left;
+}
+
+.block-superfish li ul li:hover,
+.block-superfish li ul li a:hover,
+.block-superfish li ul li:hover a {
+  background-color: #484848;
+}
+
+/* content zone */
+#region-sidebar-first {
+  min-height: 1em;
+}
+
+body.front .region-content-inner {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid accent(#222222);
+  border-radius: 18px;
+  margin-top: 33%;
+  padding-bottom: 54px;
+  padding-left: 27px;
+  padding-right: 27px;
+  padding-top: 27px;
+}
+
+body.front .region-content-inner h2 {
+  font-size: 2.22222em;
+}
+
+body.front .region-content-inner h1,
+body.front .region-content-inner p,
+body.front .region-content-inner label {
+  color: white;
+}
+
+.tags .field-label,
+.tags .field-item {
+  font-size: 13.5px;
+}
+
+body.not-front #region-content:after,
+body.not-front #region-content:before {
+  border-bottom: 4px solid #e09430;
+  border-top: 4px solid #e09430;
+  bottom: -4px;
+  content: "";
+  position: absolute;
+  top: -4px;
+  width: 9999px;
+}
+
+body.not-front #region-content:before {
+  background-color: white;
+  right: 100%;
+}
+
+body.not-front #region-content:after {
+  background-color: #eeeeee;
+  left: 100%;
+}
+
+body.not-front #region-content {
+  background: none repeat scroll 0 0 white;
+  border-top: 4px solid #e09430;
+  border-bottom: 4px solid #e09430;
+  border-right: 4px solid #e09430;
+  margin-right: 6px;
+}
+
+body.not-front #region-content,
+body.not-front #region-sidebar-second,
+body.not-front #region-sidebar-first {
+  padding-bottom: 108px;
+}
+
+body.not-front #region-content {
+  padding-top: 36px;
+}
+
+#breadcrumb {
+  margin-top: -27px;
+}
+
+#breadcrumb ul {
+  margin-bottom: 27px;
+  margin-top: 27px;
+}
+
+#breadcrumb li {
+  display: inline-block;
+  font-size: 13.5px;
+  padding-right: 13.5px;
+}
+
+/* general views styles */
+#region-content .views-row {
+  margin-bottom: 36px;
+}
+
+/* blog view styles */
+#region-content .views-row {
+  margin-bottom: 36px;
+}
+
+body.context-blog #region-content .views-row {
+  margin-bottom: 54px;
+  padding-bottom: 54px;
+}
+
+body.context-blog #region-content .views-row {
+  border-bottom: 1px dashed #dddddd;
+  overflow: hidden;
+}
+
+.views-field-field-image div a,
+.node-type-article .field-name-field-image {
+  border: 1px solid #DDDDDD;
+  display: block;
+  margin-bottom: 18px;
+  overflow: hidden;
+  padding: 18px;
+  width: 100%;
+}
+
+.page-node .field-name-field-image {
+  margin-bottom: 18px;
+}
+
+body.context-blog .region-content-inner {
+  margin-right: 54px;
+}
+
+.read-more {
+  margin-bottom: 0;
+  margin-top: 18px;
+  text-align: right;
+}
+
+/* user page */
+body.page-user div.field-name-field-profile-image {
+  float: left;
+  margin-bottom: 30px;
+  position: relative;
+  width: 10%;
+}
+
+body.page-user div.field-name-field-bio {
+  float: right;
+  margin-bottom: 30px;
+  position: relative;
+  width: 89%;
+}
+
+/* sidebar */
+body.not-front #region-sidebar-second,
+body.not-front #region-sidebar-first {
+  padding-top: 81px;
+}
+
+body.not-front #region-sidebar-second .block-inner {
+  padding: 18px;
+}
+
+body.not-front .region-content-inner {
+  margin-right: 36px;
+}
+
+ul li.leaf {
+  list-style: none;
+}
+
+#region-sidebar-first ul li.leaf,
+#region-sidebar-second ul li.leaf {
+  border-bottom: 1px dashed #dddddd;
+  padding: 9px 0;
+}
+
+body.not-front #region-sidebar-first .block,
+body.not-front #region-sidebar-second .block {
+  padding-bottom: 36px !important;
+}
+
+ul li.leaf.last {
+  border-bottom: none !important;
+}
+
+/* about the author */
+.author {
+  margin: 36px 0;
+  padding: 36px 0;
+  border-bottom: 1px dashed #dddddd;
+  border-top: 1px dashed #dddddd;
+}
+
+body.context-blog #region-content .view-about-the-author .views-row {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.views-field-field-profile-image {
+  float: left;
+  padding-right: 3%;
+  width: 30%;
+}
+
+.views-field-field-bio {
+  float: left;
+  width: 67%;
+}
+
+/* social follow block + Easy Social styles */
+.social-icons {
+  text-align: right;
+}
+
+.social-icons a {
+  color: white;
+  display: inline-block;
+  padding: 0 9px;
+}
+
+.social-icons a:hover {
+  color: #e09430;
+}
+
+.social-icons i {
+  font-size: 27px;
+}
+
+.easy_social_box {
+  float: right;
+  margin: 18px 0;
+  text-align: right;
+}
+
+.easy_social_box div.easy_social-widget {
+  padding: .2em 0 !important;
+}
+
+/* pager styles */
+ul.pager {
+  background: none;
+  border: none;
+  display: inline-block;
+  float: right;
+  overflow: hidden;
+  text-align: right;
+}
+
+ul.pager li {
+  border: none;
+  font-size: 1em;
+  padding: .5em 0 .5em 1em;
+}
+
+ul.pager li a {
+  border: none;
+}
+
+.pager li.pager-next,
+.pager li.pager-previous {
+  text-transform: capitalize;
+}
+
+.pager li.pager-current {
+  font-weight: normal;
+}
+
+.pager li, .pager li.pager-next, .pager li.pager-previous, .pager li.pager-last, .pager li.pager-first {
+  border: none;
+  margin-left: 1em;
+  position: relative;
+  text-align: right;
+}
+
+.pager li.pager-first a, .pager li.pager-previous a, .pager li.pager-next a, .pager li.pager-last a {
+  display: inline-block;
+}
+
+.pager li.pager-next,
+.pager li.pager-current {
+  float: right;
+}
+
+.pager li.pager-previous {
+  float: left;
+}
+
+.item-list .pager li {
+  padding: .25em 1em;
+}
+
+/* comment styles */
+#block-commentsblock-comment-form-block.block {
+  clear: both;
+}
+
+.comment-submitted,
+.comment-submitted span {
+  font-size: 13.5px;
+  font-weight: normal;
+}
+
+article.comment {
+  background: #eeeeee;
+  border: 1px solid #dddddd;
+  padding: 36px;
+  margin-bottom: 54px;
+}
+
+.indented {
+  margin-left: 36px;
+}
+
+.comment-links {
+  text-align: right;
+}
+
+.comment-links a {
+  font-size: 13.5px;
+  text-transform: capitalize;
+}
+
+body.page-comment-reply div#region-content div.region-inner div.block-inner div.content div.comment {
+  margin: 0;
+  padding: 0;
+}
+
+/* FOOTER */
+#zone-footer-wrapper {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+body.not-front #zone-footer-wrapper {
+  position: relative;
+}
+
+#zone-footer {
+  height: auto;
+  margin: 0 auto;
+}
+
+#zone-footer p {
+  color: white;
+  font-size: 13.5px;
+  margin-bottom: 9px;
+  margin-top: 9px;
+}
+
+/* RESPONSIVE DESIGN */
+@media all and (max-width: 980px) {
+  .grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, .grid-7, .grid-8, .grid-9, .grid-10, .grid-11, .grid-12, .grid-13, .grid-14, .grid-15, .grid-16, .grid-17, .grid-18, .grid-19, .grid-20, .grid-21, .grid-22, .grid-23, .grid-24 {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  #region-branding,
+  #region-menu {
+    float: left;
+    max-width: 50%;
+  }
+
+  #region-menu {
+    float: right;
+    margin-bottom: 0.4em;
+    margin-top: 0.4em;
+    text-align: right;
+  }
+
+  #region-sidebar-first {
+    min-height: 0;
+  }
+
+  body.front #region-content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  body.front .region-content-inner {
+    border-radius: 0;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 18px;
+  }
+
+  body.not-front #zone-content-wrapper {
+    background: white;
+    border-bottom: 4px solid #E09430;
+    border-top: 4px solid #E09430;
+  }
+
+  body.not-front #region-content,
+  body.not-front #region-sidebar-second,
+  body.not-front #region-sidebar-first {
+    padding-top: 0;
+  }
+
+  body.not-front #region-content {
+    border-bottom: 1px dashed #dddddd;
+    border-right: none;
+    border-top: none;
+    margin-right: 18px;
+    margin-bottom: 54px;
+    padding-bottom: 54px;
+  }
+
+  body.context-blog .region-content-inner,
+  body.not-front .region-content-inner {
+    margin-right: 0;
+  }
+
+  body.not-front #region-content:after,
+  body.not-front #region-content:before {
+    background-color: white;
+    width: 0;
+  }
+
+  #region-sidebar-second {
+    float: left;
+    margin-right: 0;
+  }
+
+  aside#region-sidebar-second section.block,
+  aside#region-sidebar-first section.block,
+  aside#region-sidebar-second div.block,
+  aside#region-sidebar-first div.block {
+    padding-left: 0;
+  }
+
+  .views-field-field-profile-image {
+    width: 28%;
+  }
+
+  .views-field-field-bio {
+    width: 72%;
+  }
+
+  #breadcrumb {
+    margin-top: 0;
+  }
+
+  #region-footer-first,
+  #region-footer-second {
+    width: 45%;
+  }
+
+  #region-footer-first {
+    float: left;
+    margin-right: 0;
+  }
+
+  #region-footer-second {
+    float: right;
+    margin-left: 0;
+  }
+}
+@media all and (max-width: 740px) {
+  body.front .region-content-inner {
+    background: none;
+    padding-top: 10%;
+  }
+
+  body.front .region-content-inner p {
+    font-size: 22.5px;
+  }
+
+  p.two-column-first, div.two-column-first, span.two-column-first,
+  p.two-column-last, div.two-column-last, span.two-column-last {
+    clear: both;
+    width: 100%;
+  }
+
+  div.two-column-first p,
+  div.two-column-last p {
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+
+  select#superfish-1-select {
+    font-size: 1em;
+    width: 252px;
+  }
+
+  input[type="text"], textarea, select, input[type="date"], input[type="email"],
+  input[type="password"], input[type="search"], input[type="tel"] {
+    background: white;
+  }
+
+  #zone-footer-wrapper {
+    background: #222222;
+  }
+}
+@media all and (max-width: 500px) {
+  #zone-user,
+  #zone-branding,
+  #zone-header,
+  #zone-preface,
+  #zone-content,
+  #zone-postscript,
+  #zone-footer {
+    padding: 0 18px;
+  }
+
+  body.not-front #region-sidebar-second {
+    padding-top: 0;
+  }
+
+  .views-field-field-image div a,
+  .node-type-article .field-name-field-image {
+    padding: 0;
+  }
+
+  .image-left,
+  .image-right {
+    clear: both;
+    float: left;
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .caption p {
+    text-align: left !important;
+  }
+
+  .views-field-field-profile-image {
+    margin-bottom: 18px;
+    padding-right: 0;
+    width: 100%;
+  }
+
+  .views-field-field-bio {
+    clear: both;
+    width: 100%;
+  }
+
+  #zone-branding.zone div.block-main-menu,
+  div.block-system-main-menu div.content select {
+    clear: both;
+    float: left;
+    width: 100%;
+  }
+
+  body.not-front #region-branding {
+    border-bottom: none;
+  }
+
+  #region-footer-first,
+  #region-footer-second {
+    width: 100%;
+  }
+
+  #region-footer-first {
+    margin-right: 10px;
+  }
+
+  #region-footer-second {
+    float: left;
+    margin-left: 10px;
+  }
+
+  .social-icons {
+    text-align: left;
+  }
+
+  select#superfish-1-select {
+    width: 180px;
+  }
+
+  #region-branding {
+    margin-right: 0;
+  }
+
+  #region-menu {
+    margin-left: 0;
+  }
+
+  h1.site-name, h1.site-name a, h2.site-name, h2.site-name a {
+    margin-bottom: 0.2em;
+  }
+
+  #region-branding, #region-menu {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #region-menu {
+    float: left;
+    margin-left: 18px;
+    margin-bottom: 0.6em;
+    text-align: left;
+  }
+
+  select#superfish-1-select {
+    width: 80%;
+    margin-bottom: 0.2em;
+  }
+
+  input[type="text"], textarea, select, input[type="date"], input[type="email"],
+  input[type="password"], input[type="search"], input[type="tel"] {
+    box-shadow: none;
+    font-weight: normal;
+    width: 80%;
+  }
+}
