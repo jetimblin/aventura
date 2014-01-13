@@ -13,4 +13,4 @@ The installation profile also comes with loads of configuration options includin
 
 Another feature is a full page hero image on the front page. Don't want the image? It's easy to reconfigure the front page to use the same layout as the other pages on the site.
 
-See a [live demo](http://aventura.friendlymachine.net) of the installation profile. Although this project profile is not actively supported, I would appreciate any bug reports.
+See a [live demo](http://aventura.friendlymachine.net) of the installation profile. Although this project is not actively supported, I would appreciate any bug reports.
